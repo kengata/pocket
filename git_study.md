@@ -9,19 +9,18 @@
 ***
 #### 作業ログ
 
-ここをgitのローカルリポジトリにする
+ここにgitのローカルリポジトリをつくる
 /Users/Ken/Documents/git/Pocket
 
 **git init**
 git管理したいフォルダを作る
 
-ブランチがない気がするが、、、
-コミットしていなからか？
+masterブランチが自動でつくられる
 
 とりあえず.gitignoreと、git_study.mdをつくる
 
-.gitignoreはobsidianの管理フォルダ.obsidianが管理されると
-面倒そうだったので
+.gitignoreはobsidianの管理フォルダ.obsidianを指定する。
+管理されると面倒そうだったので
 
 **git status**
 状況をみる。コミットされていないファイルがわかる
@@ -67,5 +66,12 @@ viエディタが起動する、、、脇道にそれる
 
 ステージングするときに以下で未ステージのファイルを全部登録できる
 ステージングとインデックス追加は同じ意味
-git add .
+**git add .**
 
+***
+覚えたこと
+ローカルリポジトリの作成 ： git init
+ステージしてコミット：git add / git commit
+
+目標の２まではクリア
+***
