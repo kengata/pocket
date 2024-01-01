@@ -38,10 +38,10 @@ git管理したいフォルダを作る
 masterブランチが作られている？git initで？
 よくわからないがコミットしてみる
 
-git add
+**git add**
 ファイルをステージングする
 
-git commit
+**git commit**
 ステージングされたファイルをコミットする
 
 viエディタが起動する、、、脇道にそれる
@@ -52,7 +52,6 @@ viエディタが起動する、、、脇道にそれる
 
 コミットできた
 コミットコメントの#のコメントは消さなくてOK
-消しちゃダメかも
 
 「igonoreファイルを追加」がコメント
 
@@ -63,21 +62,10 @@ viエディタが起動する、、、脇道にそれる
 
 .gitignoreファイルの配置はgitフォルダの直下でよいみたい。.gitのほうじゃなくて
 
-日本語のファイル名が文字化けする、、
-[文字化け対策](https://dev.classmethod.jp/articles/git-avoid-illegal-charactor-tips/)
+日本語のファイル名が文字化けする、、、脇道にそれる
+[[gitファイル名の文字化け対策]]
 
-とりあえずこのリポジトリだけに設定する
-git config --local core.quotepath false
+ステージングするときに以下で未ステージのファイルを全部登録できる
+ステージングとインデックス追加は同じ意味
+git add .
 
-git全体の設定する場合は
-git config --global core.quotepath false
-
-治った
-
-`MACBOOK:pocket Ken$ git status`
-`On branch master`
-`Untracked files:`
-  `(use "git add <file>..." to include in what will be committed)`
-
-git_study.md
-viエディタ使い方.md
