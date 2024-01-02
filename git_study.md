@@ -1,4 +1,3 @@
-
 #### 目標
 以下をコマンド操作で実施する
 1. マークダウンファイルの作成
@@ -75,3 +74,24 @@ viエディタが起動する、、、脇道にそれる
 
 目標の２まではクリア
 ***
+
+#### リモートリポジトリへのプッシュ
+
+git hubでリポジトリを作成しておいて、ローカルからpushする流れらしい
+ポケットリファレンスの本にはgithubのことは書かれていないのでこれを参照
+[github使い方](https://atmarkit.itmedia.co.jp/ait/articles/1701/24/news141.html)
+
+これを作成した
+https://github.com/kengata/pocket
+
+作成直後のページにあるこれ。既にあるリポジトリからpushするを使う
+##### …or push an existing repository from the command line
+git remote add origin git@github.com:kengata/pocket.git
+git branch -M main
+git push -u origin main
+
+##### 実際に投入したコマンド
+git remote -v
+git remote add origin git@github.com:kengata/pocket.git
+git remote -v
+git push origin main
