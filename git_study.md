@@ -95,3 +95,34 @@ git remote -v
 git remote add origin git@github.com:kengata/pocket.git
 git remote -v
 git push origin main
+
+ここまではOK
+	`MACBOOK:~ Ken$ cd Documents/git/pocket`
+	`MACBOOK:pocket Ken$ git remote -v`
+	`MACBOOK:pocket Ken$ git remote add origin git@github.com:kengata/pocket.git`
+	`MACBOOK:pocket Ken$ git remote -v`
+	`origin git@github.com:kengata/pocket.git (fetch)`
+	`origin git@github.com:kengata/pocket.git (push)`
+
+これエラーになるじゃん、、、
+	`MACBOOK:pocket Ken$ git push origin main`
+	`error: src refspec main does not match any.`
+	`error: failed to push some refs to 'git@github.com:kengata/pocket.git'`
+
+ローカルブランチの名前がmasterだからだめっぽい
+
+よく分からないままgithubのページの２、３行目のコマンドを投入
+	`MACBOOK:pocket Ken$ git branch -M main`
+	`MACBOOK:pocket Ken$ git push -u origin main`
+	`Counting objects: 18, done.`
+	`Delta compression using up to 4 threads.`
+	`Compressing objects: 100% (15/15), done.`
+	`Writing objects: 100% (18/18), 4.23 KiB | 1.41 MiB/s, done.`
+	`Total 18 (delta 5), reused 0 (delta 0)`
+	`remote: Resolving deltas: 100% (5/5), done.`
+	`To github.com:kengata/pocket.git`
+	 * `[new branch]      main -> main`
+	`Branch 'main' set up to track remote branch 'main' from 'origin'.`
+
+成功！
+最初のエラーになったコマンド、ブランチ名をmasterにしたらOKだったのかも
