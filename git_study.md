@@ -4,8 +4,8 @@
 - [x] ローカルリポジトリへのコミット
 - [x] リモートリポジトリへのプッシュ
 - [x] リモートリポジトリからのプル
-- [ ] ブランチの作成
 - [ ] 競合の解消
+- [ ] ブランチの作成
 
 ***
 #### ローカルリポジトリの作成、add/commit
@@ -170,4 +170,56 @@ githubで直接更新したファイルがローカルリポジトリに取り�
 	 `create mode 100644 README.md`
 
 ---
-#### ブランチの作成
+#### 競合の解消
+
+1. リモートのreadmeの３行目をgithubで更新
+2. 並行してローカルのreadmeの３行目を更新
+3. pull
+4. push
+5. 競合発生
+6. 競合解消 rebase
+7. add/commit
+8. push
+
+pullの実行後
+```
+MACBOOK:pocket Ken$ git pull
+Updating ca51c5c..1138cdd
+error: Your local changes to the following files would be overwritten by merge:
+README.md
+Please commit your changes or stash them before you merge.
+Aborting
+```
+
+pushの実行後
+```
+MACBOOK:pocket Ken$ git push
+To github.com:kengata/pocket.git
+ ! [rejected]        main -> main (non-fast-forward)
+error: failed to push some refs to 'git@github.com:kengata/pocket.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+```
+
+git pull -rebase
+リモートの変更を先に取り込む
+```
+MACBOOK:pocket Ken$ git pull --rebase
+First, rewinding head to replay your work on top of it...
+Applying: readmeの更新 local
+Using index info to reconstruct a base tree...
+M README.md
+Falling back to patching base and 3-way merge...
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+error: Failed to merge in the changes.
+Patch failed at 0001 readmeの更新 local
+Use 'git am --show-current-patch' to see the failed patch
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+```

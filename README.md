@@ -1,3 +1,3 @@
 Git学習用
 
-remortで更新
+localでも更新したよ
