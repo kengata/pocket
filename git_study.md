@@ -1,29 +1,27 @@
 #### 目標
 以下をコマンド操作でやる
-1. マークダウンファイルの作成
-2. ローカルリポジトリへのコミット
-3. リモートリポジトリへのプッシュ
-4. リモートリポジトリからのプル
-5. ブランチの作成
-6. 競合の解消
+- [x] マークダウンファイルの作成
+- [x] ローカルリポジトリへのコミット
+- [x] リモートリポジトリへのプッシュ
+- [x] リモートリポジトリからのプル
+- [ ] ブランチの作成
+- [ ] 競合の解消
 
 ***
-#### 作業ログ
+#### ローカルリポジトリの作成、add/commit
 
-ここにgitのローカルリポジトリをつくる
-/Users/Ken/Documents/git/Pocket
-
-**git init**
+##### git init
 git管理したいフォルダを作る
-
 masterブランチが自動でつくられる
-
 とりあえず.gitignoreと、git_study.mdをつくる
 
 .gitignoreはobsidianの管理フォルダ.obsidianを指定する。
 管理されると面倒そうだったので
 
-**git status**
+gitのローカルリポジトリをここに作成
+/Users/Ken/Documents/git/Pocket
+
+##### git status
 状況をみる。コミットされていないファイルがわかる
 
 `MACBOOK:Pocket Ken$ git status`
@@ -38,10 +36,10 @@ masterブランチが自動でつくられる
 masterブランチが作られている？git initで？
 よくわからないがコミットしてみる
 
-**git add**
+##### git add
 ファイルをステージングする
 
-**git commit**
+##### git commit
 ステージングされたファイルをコミットする
 
 viエディタが起動する、、、脇道にそれる
@@ -76,8 +74,7 @@ viエディタが起動する、、、脇道にそれる
 
 目標の２まではクリア
 ***
-
-#### リモートリポジトリへのプッシュ
+#### リモートリポジトリへのpush
 
 git hubでリポジトリを作成しておいて、ローカルからpushする流れらしい
 ポケットリファレンスの本にはgithubのことは書かれていないのでこれを参照
@@ -129,7 +126,7 @@ git push origin main
 成功！
 最初のエラーになったコマンド、ブランチ名をmasterにしたらOKだったのかも
 
-#### git push
+##### git push
 	引数（-u origin main）なしでpushできた
 
 push前にstatus確認。リモートのorigin/mainよりローカルが先行しているって。
@@ -160,3 +157,17 @@ githubでのリモートブランチ作成
 3のリモートリポジトリへのpushまでクリア
 
 ---
+#### リモートリポジトリからのpull
+
+##### git pull
+これだけ
+githubで直接更新したファイルがローカルリポジトリに取り込まれた
+	`MACBOOK:pocket Ken$ git pull`
+	`Updating 4552b15..1b89238`
+	`Fast-forward`
+	 `README.md | 1 +`
+	 `1 file changed, 1 insertion(+)`
+	 `create mode 100644 README.md`
+
+---
+#### ブランチの作成
