@@ -1,9 +1,11 @@
 #### 目標
-以下をコマンド操作で実施する
+以下をコマンド操作でやる
 1. マークダウンファイルの作成
 2. ローカルリポジトリへのコミット
 3. リモートリポジトリへのプッシュ
-4. githubでのmdファイルの表示
+4. リモートリポジトリからのプル
+5. ブランチの作成
+6. 競合の解消
 
 ***
 #### 作業ログ
@@ -126,3 +128,35 @@ git push origin main
 
 成功！
 最初のエラーになったコマンド、ブランチ名をmasterにしたらOKだったのかも
+
+#### git push
+	引数（-u origin main）なしでpushできた
+
+push前にstatus確認。リモートのorigin/mainよりローカルが先行しているって。
+	`MACBOOK:pocket Ken$ git status`
+	`On branch main`
+	`Your branch is ahead of 'origin/main' by 1 commit.`
+	  `(use "git push" to publish your local commits)`
+	`nothing to commit, working tree clean`
+
+pushする
+	`MACBOOK:pocket Ken$ git push`
+	`Counting objects: 4, done.`
+	`Delta compression using up to 4 threads.`
+	`Compressing objects: 100% (4/4), done.`
+	`Writing objects: 100% (4/4), 1.34 KiB | 1.34 MiB/s, done.`
+	`Total 4 (delta 2), reused 0 (delta 0)`
+	`remote: Resolving deltas: 100% (2/2), completed with 2 local objects.`
+	`To github.com:kengata/pocket.git`
+	   `475a132..4552b15  main -> main`
+
+---
+覚えたこと
+githubでのリモートブランチ作成
+ローカルでのリモート追跡？ブランチ作成
+ローカルのリボジトリ名変更
+リモートブランチへのpush
+
+3のリモートリポジトリへのpushまでクリア
+
+---
