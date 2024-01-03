@@ -225,3 +225,97 @@ To abort and get back to the state before "git rebase", run "git rebase --abort"
 
 git pull --rebase
 リモートの変更を先に取り込む
+
+いろいろエラーが出てよく分からんことに、、
+
+最初にgit pull --rebase
+これはコンフリクトしてるぞって言われているだけだと思う
+```
+MACBOOK:pocket Ken$ git pull --rebase
+First, rewinding head to replay your work on top of it...
+Applying: readmeの更新 local
+Using index info to reconstruct a base tree...
+M	README.md
+Falling back to patching base and 3-way merge...
+Auto-merging README.md
+CONFLICT (content): Merge conflict in README.md
+error: Failed to merge in the changes.
+Patch failed at 0001 readmeの更新 local
+Use 'git am --show-current-patch' to see the failed patch
+
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+
+```
+
+エディタでREADME.mdのコンプリクトを解消させた後でadd/commit
+```
+MACBOOK:pocket Ken$ git add .
+MACBOOK:pocket Ken$ git commit
+[detached HEAD 6eab44f] readmeの競合を解消。ローカルの変更を選択
+ 2 files changed, 55 insertions(+), 3 deletions(-)
+MACBOOK:pocket Ken$ git push
+fatal: You are not currently on a branch.
+To push the history leading to the current (detached HEAD)
+state now, use
+
+    git push origin HEAD:<name-of-remote-branch>
+
+```
+
+その後でgit rebase --continue
+```
+MACBOOK:pocket Ken$ git rebase --continue
+Applying: gitstudyコミット
+No changes - did you forget to use 'git add'?
+If there is nothing left to stage, chances are that something else
+already introduced the same changes; you might want to skip this patch.
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm <conflicted_files>", then run "git rebase --continue".
+You can instead skip this commit: run "git rebase --skip".
+To abort and get back to the state before "git rebase", run "git rebase --abort".
+
+```
+
+status確認。rebaseが処理中だという
+```
+MACBOOK:pocket Ken$ git status
+rebase in progress; onto 1138cdd
+You are currently rebasing branch 'main' on '1138cdd'.
+  (all conflicts fixed: run "git rebase --continue")
+nothing to commit, working tree clean
+```
+
+よく分からないのでrebaseをskipする
+```
+MACBOOK:pocket Ken$ git rebase --skip
+
+```
+
+statusが正常になった
+```
+MACBOOK:pocket Ken$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 3 commits.
+  (use "git push" to publish your local commits)
+nothing to commit, working tree clean
+
+```
+
+pushする
+```
+MACBOOK:pocket Ken$ git push
+Counting objects: 10, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (10/10), 1.85 KiB | 946.00 KiB/s, done.
+Total 10 (delta 6), reused 0 (delta 0)
+remote: Resolving deltas: 100% (6/6), completed with 2 local objects.
+To github.com:kengata/pocket.git
+   1138cdd..8c31486  main -> main
+```
+
+リモートのREADME.mdはlocalのコミットが反映されていた
+
