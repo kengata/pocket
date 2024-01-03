@@ -201,6 +201,7 @@ hint: Updates were rejected because the tip of your current branch is behind
 hint: its remote counterpart. Integrate the remote changes (e.g.
 hint: 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+<<<<<<< HEAD
 
 ```
 
@@ -223,3 +224,9 @@ Resolve all conflicts manually, mark them as resolved with
 You can instead skip this commit: run "git rebase --skip".
 To abort and get back to the state before "git rebase", run "git rebase --abort".
 ```
+=======
+```
+
+git pull --rebase
+リモートの変更を先に取り込む
+>>>>>>> gitstudyコミット
