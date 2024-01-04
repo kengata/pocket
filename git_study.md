@@ -362,5 +362,5 @@ Switched to branch 'topic'
 ブランチを切り替えるとそのブランチに存在しないファイルは
 Finderや、obsidianからも見れなくなる
 
-topicで作業中のファイルをcommitせずにブランチの切り替えは可能か
-
+topicで作業中のファイルをcommitせずにブランチの切り替えはできるか
+競合していなければできる
