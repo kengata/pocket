@@ -334,3 +334,30 @@ rebaseがよくわかってないが競合の解消までOK
 
 ---
 #### ブランチの操作
+
+##### ブランチの作成
+git checkout -b ブランチ名
+
+topicブランチを作成してチェックアウト
+```
+MACBOOK:pocket Ken$ git checkout -b topic
+Switched to a new branch 'topic'
+```
+
+##### ブランチのリスト表示
+git branch -l
+先頭にアスタリスクがついているのが現在チェックアウトしているブランチ
+```
+MACBOOK:pocket Ken$ git branch -l
+  main
+* topic
+```
+##### ブランチの切り替え
+git checkout ブランチ名
+```
+MACBOOK:pocket Ken$ git checkout topic
+Switched to branch 'topic'
+```
+
+ブランチを切り替えるとそのブランチに存在しないファイルは
+Finderや、obsidianからも見れなくなる
