@@ -4,7 +4,8 @@
 - [x] リモートリポジトリへのプッシュ
 - [x] リモートリポジトリからのプル
 - [x] 競合の解消
-- [ ] ブランチの操作
+- [x] ブランチの操作
+- [ ] クローン
 
 ***
 #### ローカルリポジトリの作成からコミット
@@ -363,4 +364,83 @@ Switched to branch 'topic'
 Finderや、obsidianからも見れなくなる
 
 topicで作業中のファイルをcommitせずにブランチの切り替えはできるか
-競合していなければできる
+-->競合していなければできる
+
+---
+### クローン
+
+リモートリポジトリをローカルにコピーする。
+gitのディレクトリとして作成されるのでinitはいらない
+
+pocket_2というローカルリポジトリを作成する
+もとのpocketリポジトリとの関係をみる
+
+コマンド
+git clone リモートリポジトリURL  ローカルリポジトリのフォルダ
+・・・ローカルのフォルダを作成してリモートリポジトリをもってくる
+
+実施例
+cloneする
+```
+MACBOOK:git Ken$ git clone git@github.com:kengata/pocket.git pocket_2
+Cloning into 'pocket_2'...
+remote: Enumerating objects: 104, done.
+remote: Counting objects: 100% (104/104), done.
+remote: Compressing objects: 100% (60/60), done.
+remote: Total 104 (delta 55), reused 76 (delta 35), pack-reused 0
+Receiving objects: 100% (104/104), 19.00 KiB | 2.11 MiB/s, done.
+Resolving deltas: 100% (55/55), done.
+
+```
+
+フォルダ作成されたか確認。pocket_2が作成されている
+```
+MACBOOK:git Ken$ ls
+mao-seminar		pocket_2		repo_001
+pocket			pull-request-practice	sample
+
+```
+
+作成されたgitフォルダに移動して内容の確認
+```
+MACBOOK:git Ken$ cd pocket_2
+MACBOOK:pocket_2 Ken$ ls
+README.md					gitファイル名の文字化け対策.md
+bashコマンド.md					viエディタ使い方.md
+git_study.md					横道世之介.md
+gitコマンド.md
+```
+
+gitのstatus。リモートと同期されている
+```
+MACBOOK:pocket_2 Ken$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+```
+
+configをみてみる。remoteがkengata/pocket.gitだと分かる
+```
+MACBOOK:pocket_2 Ken$ git config -l
+credential.helper=osxkeychain
+core.excludesfile=/Users/Ken/.gitignore_global
+difftool.sourcetree.cmd=opendiff "$LOCAL" "$REMOTE"
+difftool.sourcetree.path=
+mergetool.sourcetree.cmd=/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
+mergetool.sourcetree.trustexitcode=true
+user.name=kenichiro yamagata
+user.email=kenichiro.yamagata@gmail.com
+commit.template=/Users/Ken/.stCommitMsg
+core.repositoryformatversion=0
+core.filemode=true
+core.bare=false
+core.logallrefupdates=true
+core.ignorecase=true
+core.precomposeunicode=true
+remote.origin.url=git@github.com:kengata/pocket.git
+remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+branch.main.remote=origin
+branch.main.merge=refs/heads/main
+```
