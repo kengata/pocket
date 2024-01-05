@@ -379,7 +379,7 @@ pocket_2というローカルリポジトリを作成する
 git clone リモートリポジトリURL  ローカルリポジトリのフォルダ
 ・・・ローカルのフォルダを作成してリモートリポジトリをもってくる
 
-実施例
+#### クローンまで実施
 cloneする
 ```
 MACBOOK:git Ken$ git clone git@github.com:kengata/pocket.git pocket_2
@@ -420,7 +420,6 @@ Your branch is up to date with 'origin/main'.
 nothing to commit, working tree clean
 
 ```
-
 configをみてみる。remoteがkengata/pocket.gitだと分かる
 ```
 MACBOOK:pocket_2 Ken$ git config -l
@@ -444,3 +443,78 @@ remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
 branch.main.remote=origin
 branch.main.merge=refs/heads/main
 ```
+
+#### クローンしたリポジトリでのpush、別のローカルでのpull
+- pocket_2 のほうでgit_study.mdを更新、add/commit/push
+- もとのpocketリポジトリのほうでpullして最新の状態にできることを確認
+
+pocket_2 のほうでgit_study.mdを更新。ステージング、コミット前
+```
+MACBOOK:pocket_2 Ken$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   git_study.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+ステージしてコミット
+```
+MACBOOK:pocket_2 Ken$ git add .
+MACBOOK:pocket_2 Ken$ git commit
+[main 9e4308e] git_study.mdにクローンを追加 pocket_2
+ 1 file changed, 82 insertions(+), 2 deletions(-)
+ 
+```
+ステータス。リモートより1commit先行している
+```
+MACBOOK:pocket_2 Ken$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+```
+リモートにpush
+```
+MACBOOK:pocket_2 Ken$ git push
+Counting objects: 3, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 1.53 KiB | 1.53 MiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To github.com:kengata/pocket.git
+   f067a7e..9e4308e  main -> main
+```
+
+作業ディレクトリをもとのpocket に移動
+```
+MACBOOK:pocket_2 Ken$ cd ../pocket
+```
+
+ステータス。リモートが1commit先行しているのでpullしてね
+```
+MACBOOK:pocket Ken$ git status
+On branch main
+Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+nothing to commit, working tree clean
+
+```
+
+pull。Fast-forwardってなんだっけ
+```
+MACBOOK:pocket Ken$ git pull
+Updating f067a7e..9e4308e
+Fast-forward
+ git_study.md | 84 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 82 insertions(+), 2 deletions(-)
+```
+ 
