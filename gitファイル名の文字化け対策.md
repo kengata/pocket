@@ -15,3 +15,6 @@ git config --global core.quotepath false
   `(use "git add <file>..." to include in what will be committed)`
 `git_study.md`
 `viエディタ使い方.md`
+
+2024/1/7
+globalのほうを実施済み
