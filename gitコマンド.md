@@ -42,6 +42,21 @@ MACBOOK:pocket_2 Ken$ git commit -m "git_study.mdを更新 pocket_2"
 リポジトリの状態を表示する。未ステージグ、未コミットがどれだけあるかわかる。
 git status
 
+git status -v
+ファイル内の変更まで表示させる。ステージ分
+
+git status -v -v
+未ステージ分も詳細表示
+
+---
+# reset
+ステージング、コミットの取り消し
+
+
+
+
+
+
 ---
 # push
 プッシュ
