@@ -131,3 +131,29 @@ git reset ファイル名
 # revert
 コミットを取り消す別のコミットを作成する
 
+事前に戻したいコミットのハッシュを確認
+```
+MACBOOK:pocket Ken$ git log --oneline
+72a1f35 (**HEAD ->** **main**, **origin/main**) リバートする前のコミット
+dd7af0f gitコマンド.mdを更新
+```
+
+revert 実行
+--no-edit オプションはリバートのコミットメッセージを編集しない指定
+```
+MACBOOK:pocket Ken$ git revert --no-edit 72a1f35
+[main 1f07a28] Revert "リバートする前のコミット"
+ Date: Mon Jan 8 05:27:51 2024 +0900
+ 1 file changed, 1 deletion(-)
+```
+
+log確認
+1f07a28がリバートによる戻しコミット
+
+```
+MACBOOK:pocket Ken$ git log --oneline
+1f07a28 (**HEAD ->** **main**) Revert "リバートする前のコミット"
+72a1f35 (**origin/main**) リバートする前のコミット
+dd7af0f gitコマンド.mdを更新
+
+```
