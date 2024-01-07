@@ -49,15 +49,6 @@ git status -v -v
 未ステージ分も詳細表示
 
 ---
-# reset
-ステージング、コミットの取り消し
-
-
-
-
-
-
----
 # push
 プッシュ
 
@@ -116,3 +107,27 @@ commitが必要
 bashのmvコマンドやGUIでファイル名を変更してもgitには反映されない
 
 ---
+# reset
+ステージング、コミットの取り消し
+
+### 直前のコミットを取り消す
+
+HEAD^  は直前のコミットの一つ前の状態
+
+```
+git reset --hard HEAD^
+```
+
+```
+MACBOOK:pocket Ken$ git reset --hard HEAD^
+HEAD is now at 575434f gitコマンド.mdを更新
+```
+### ステージから降ろす
+コミットしたくないものをはずすときに使う
+
+git reset ファイル名
+
+---
+# revert
+コミットを取り消す別のコミットを作成する
+
