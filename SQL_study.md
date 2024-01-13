@@ -64,5 +64,3 @@ mysql> show tables;
 ```
 select count(*) from テーブル名;
 ```
-
-
