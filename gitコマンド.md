@@ -108,9 +108,36 @@ branch -d ブランチ名
 ローカルでブランチを作る
 git branch topic
 
+リモートブランチにプッシュ
+git push origin topic
+
+次に以下のpushをするとエラーになる。topicブランチの上流ブランチがないと。
+```
+MACBOOK:pocket Ken$ git push
+fatal: The current branch topic has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin topic
+
+```
+
 上流ブランチを設定する
 git branch --set-upstream-to=origin/topic topic
 
+```
+MACBOOK:pocket Ken$ git branch --set-upstream-to=origin/topic topic
+Branch 'topic' set up to track remote branch 'topic' from 'origin'.
+
+```
+
+pushのみでできるようになった
+```
+MACBOOK:pocket Ken$ git push
+Everything up-to-date
+```
+
+初回のpush時に以下でデフォルト設定ができる
+git push -u origin topic
 
 ---
 # rm
@@ -193,4 +220,3 @@ git remote
 git remote add
 
 フェッチ元と、プッシュ先を登録できる。プッシュ先は複数可
-
