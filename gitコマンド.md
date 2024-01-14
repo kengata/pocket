@@ -81,11 +81,36 @@ checkout -b ブランチ名
 
 ブランチのいろいろな操作をする
 
-branch -l
-ブランチのリストを表示する
+### ブランチのリストを表示する
+git branch -l （または --l  か　--list）
+```
+MACBOOK:pocket Ken$ git branch --l
+  develop
+  develop_2
+* main
+```
 
+git branch --list dev*
+先頭がdevのブランチの一覧を表示する
+
+```
+MACBOOK:pocket Ken$ git branch --list dev*
+  develop
+  develop_2
+```
+### ブランチを作成する
+git branch ブランチ名
+
+### ブランチを削除する
 branch -d ブランチ名
-ブランチを削除する
+
+### ローカルブランチの上流ブランチを設定する
+ローカルでブランチを作る
+git branch topic
+
+上流ブランチを設定する
+git branch --set-upstream-to=origin/topic topic
+
 
 ---
 # rm
