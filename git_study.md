@@ -534,3 +534,98 @@ git push -u origin ブランチ名
 origin でリモートの同名のブランチ名を指している
 
 gitのデフォルトの設定でそうなっている
+
+---
+## 使わなくなったブランチを削除する
+
+featureブランチを削除したい
+
+ローカルブランチの削除
+git branch -d feature
+
+```
+MACBOOK:pocket Ken$ git branch -d feature
+Deleted branch feature (was ee50796).
+```
+
+ローカルのfeatureブランチが削除されいている。リモートのfeatureブランチはまだある
+```
+MACBOOK:pocket Ken$ git branch -a
+* develop
+  main
+  remotes/origin/develop
+  remotes/origin/feature
+  remotes/origin/main
+```
+
+ローカルと同じようにorigin/featureを指定しての削除はできない
+```
+MACBOOK:pocket Ken$ git branch -d origin/feature
+error: branch 'origin/feature' not found.
+```
+
+リモートリポジトリを削除するにはpushで削除する
+```
+MACBOOK:pocket Ken$ git push --delete origin feature
+To github.com:kengata/pocket.git
+ - [deleted]         feature
+```
+
+リモートブランチが削除された。
+リモート追跡ブランチと、githubのリモートブランチも消えている
+```
+MACBOOK:pocket Ken$ git branch -a
+* develop
+  main
+  remotes/origin/develop
+  remotes/origin/main
+```
+
+developブランチも消す
+```
+MACBOOK:pocket Ken$ git branch -a
+  develop
+* main
+  remotes/origin/develop
+  remotes/origin/main
+```
+
+まずはローカルを消す branch -d
+```
+MACBOOK:pocket Ken$ git branch -d develop
+Deleted branch develop (was 9c91f9f).
+```
+
+消えた
+```
+MACBOOK:pocket Ken$ git branch -a
+* main
+  remotes/origin/develop
+  remotes/origin/main
+```
+
+次にリモートを消す。push origin :develop
+コロンは消す意味？
+```
+MACBOOK:pocket Ken$ git push origin :develop
+To github.com:kengata/pocket.git
+ - [deleted]         develop
+```
+
+消えた。github上のリポジトリも消えた
+```
+MACBOOK:pocket Ken$ git branch -a
+* main
+  remotes/origin/main
+```
+
+リモートブランチの削除は
+push を使う
+git push origin :削除ブランチ名
+または
+git push --delete origin 削除ブランチ名
+
+ex)featureブランチを消す場合
+git push origin :feature
+or
+git push --delete origin feature
