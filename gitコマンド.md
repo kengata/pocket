@@ -139,6 +139,12 @@ Everything up-to-date
 初回のpush時に以下でデフォルト設定ができる
 git push -u origin topic
 
+### リモートブランチを削除する
+git push --delete origin topic
+または
+git push origin :topic
+
+
 ---
 # rm
 削除
