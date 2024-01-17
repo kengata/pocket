@@ -226,3 +226,27 @@ git remote
 git remote add
 
 フェッチ元と、プッシュ先を登録できる。プッシュ先は複数可
+
+---
+# tag
+コミットにタグを設定する。リリースなど特別な意味をもつものの目印。
+
+タグをつける
+git tag タグ名
+
+タグを表示する
+git tag -l
+
+タグを削除する
+git tag -d タグ名
+
+タグをリモートにpushする
+git push --tags
+
+指定したタグをpushする
+git push タグ名
+
+リモートのタグを削除する
+git push --delete origin タグ名
+または
+git push origin :タグ名
