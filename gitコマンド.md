@@ -250,3 +250,10 @@ git push タグ名
 git push --delete origin タグ名
 または
 git push origin :タグ名
+
+---
+# merge
+
+スカッシュ
+コミットの履歴をひとつにまとめる
+コミット１
