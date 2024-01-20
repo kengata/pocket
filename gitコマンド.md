@@ -136,7 +136,7 @@ MACBOOK:pocket Ken$ git push
 Everything up-to-date
 ```
 
-初回のpush時に以下でデフォルト設定ができる
+### 初回のpush時に以下でデフォルト設定ができる
 git push -u origin topic
 
 ### リモートブランチを削除する
