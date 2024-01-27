@@ -5,7 +5,7 @@ git init
 
 ローカルで更新、add、commit
 
-githubでリポジトリを作る
+githubのほうでリモートリポジトリを作る
 
 ローカルにリモートリポジトリを紐づける
 git remote add origin git@github.com:kengata/作成したリポジトリ
