@@ -261,3 +261,22 @@ git merge --squash マージ元ブランチ名
 マージ内容の確認
 git diff マージ元ブランチ
 
+---
+# log
+
+git log --oneline
+コミット履歴の１行表示
+
+git log --oneline --graph
+グラフ表示
+
+---
+# diff
+
+更新差分の表示
+
+インデックス反映前
+git diff
+
+コミット前
+git diff --cached
