@@ -1,5 +1,5 @@
-git_study.md:difftool.sourcetree.cmd=opendiff "$LOCAL" "$REMOTE"
-git_study.md:difftool.sourcetree.path=
+eit_study.md:difftool.sourcetree.cmd=opendiff "$LOCAL" "$REMOTE"
+eit_study.md:difftool.sourcetree.path=
 git_study.md:mergetool.sourcetree.cmd=/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh "$LOCAL" "$REMOTE" -ancestor "$BASE" -merge "$MERGED"
 gitコマンド.md:git diff マージ元ブランチ
 gitコマンド.md:# diff
