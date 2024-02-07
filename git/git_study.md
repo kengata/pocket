@@ -529,12 +529,42 @@ Fast-forward
 ## ローカルで作成したブランチをリモートにあげる
 
 コマンド
-git push -u origin ブランチ名
+git push -u origin ローカルのブランチ名
 
 origin でリモートの同名のブランチ名を指している
 
 gitのデフォルトの設定でそうなっている
 
+
+```
+MACBOOK:pocket Ken$ git checkout -b develop3
+Switched to a new branch 'develop3'
+MACBOOK:pocket Ken$ git branch -a
+* develop3
+  main
+  topic
+  remotes/origin/main
+  remotes/origin/topic
+
+MACBOOK:pocket Ken$ git push -u origin develop3
+Total 0 (delta 0), reused 0 (delta 0)
+remote: 
+remote: Create a pull request for 'develop3' on GitHub by visiting:
+remote:      https://github.com/kengata/pocket/pull/new/develop3
+remote: 
+To github.com:kengata/pocket.git
+ * [new branch]      develop3 -> develop3
+Branch 'develop3' set up to track remote branch 'develop3' from 'origin'.
+
+MACBOOK:pocket Ken$ git branch -a
+* develop3
+  main
+  topic
+  remotes/origin/develop3
+  remotes/origin/main
+  remotes/origin/topic
+
+```
 ---
 ## 使わなくなったブランチを削除する
 
