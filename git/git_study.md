@@ -629,3 +629,62 @@ ex)featureブランチを消す場合
 git push origin :feature
 or
 git push --delete origin feature
+
+---
+### リモートに追加されたブランチをローカルでチェックアウトするには
+
+pull して、checkout
+
+githubでリモートにdevelopブランチを追加した直後
+
+remoteブランチには追加されていない
+
+```
+MACBOOK:pocket Ken$ git branch -a
+* main
+  topic
+  remotes/origin/main
+  remotes/origin/topic
+```
+
+次にpullしてみる。developブランチがリモート追跡ブランチとしてローカルに取り込まれる
+
+```
+MACBOOK:pocket Ken$ git pull
+From github.com:kengata/pocket
+ * [new branch]      develop    -> origin/develop
+Already up to date.
+```
+
+ローカルブランチ（作業ツリー）にはなっていない
+
+```
+MACBOOK:pocket Ken$ git branch
+* main
+  topic
+```
+
+リモート追跡ブランチになっている
+
+```
+MACBOOK:pocket Ken$ git branch -a
+* main
+  topic
+  remotes/origin/develop
+  remotes/origin/main
+  remotes/origin/topic
+```
+
+チェックアウトするとローカルブランチとして使えるようになる
+
+```
+MACBOOK:pocket Ken$ git checkout develop
+Branch 'develop' set up to track remote branch 'develop' from 'origin'.
+Switched to a new branch 'develop'
+
+MACBOOK:pocket Ken$ git branch -a
+* develop
+  main
+  topic
+```
+
