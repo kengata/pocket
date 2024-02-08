@@ -649,8 +649,9 @@ MACBOOK:pocket Ken$ git branch -a
   remotes/origin/main
 ```
 
-リモートブランチの削除は
+### リモートブランチの削除
 push を使う
+
 git push origin :削除ブランチ名
 または
 git push --delete origin 削除ブランチ名
