@@ -92,4 +92,71 @@ MACBOOK:pocket Ken$ git log --oneline --graph
 
 ここでmainブランチのほうを更新してみる
 
+写真の整理.mdというファイルをmainブランチのほうで、
+作成してadd、commitした
 
+git log --oneline --graph
+
+mainブランチ側ではtopicブランチで何が起きてるか知らないらしい
+b94d641の次にtopicブランチで入っているcommitはmainブランチのlogには出てこない
+topicのc1db432と525501bのこと
+```
+MACBOOK:pocket Ken$ git log --oneline --graph
+* 05018c1 (HEAD -> main) commit at main branch,add new file 写真の整理
+* b94d641 ok
+* a0fbea1 Revert "取り消したいコミット"
+* f1120b0 取り消したいコミット
+* 6174bc8 ok
+* a993b91 ok
+* bf3499e (origin/main) ok
+```
+
+ここでtopicブランチにmainをマージしてみる
+どうなることやら、枝分かれして、マージコミットが一本入るはず
+```
+MACBOOK:pocket Ken$ git status
+On branch topic
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   git コミットの取り消し.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+MACBOOK:pocket Ken$ git branch
+  main
+* topic
+MACBOOK:pocket Ken$ git merge main
+Merge made by the 'recursive' strategy.
+ 写真の整理.md | 34 ++++++++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+ create mode 100644 写真の整理.md
+MACBOOK:pocket Ken$ git log --oneline --graph
+*   d07d993 (HEAD -> topic) Merge branch 'main' into topic
+|\  
+| * 05018c1 (main) commit at main branch,add new file 写真の整理
+* | 2571479 commit at topic branch,update gitコミットの取り消し.md
+* | 525501b commit at topic branch,update コミットの取り消し
+* | c1db432 topicブランチで更新
+|/  
+* b94d641 ok
+* a0fbea1 Revert "取り消したいコミット"
+* f1120b0 取り消したいコミット
+* 6174bc8 ok
+```
+topic側はコミットされていない作業ツリーのファイルがあってもマージできた
+git log のグラフはmainブランチが本線だから左側にいてほしい気がするが、
+topicブランチにチェックアウトしているからか軸がtopicのように
+表示されれている気がする
+
+b94d641がmainからの分岐点
+c1db432、525501b、2571479がtopicブランチでの更新
+05018c1がmainブランチでの更新
+d07d993がtopicにmainをマージした際のcommit
+
+main側にtopicをマージしたらどうなるんだろ。
+たいして変わらんだろうから気にすることじゃないか
+
+ここでtopicブランチをpushする
+それでもって、マージコミットを履歴ごとなかったことにする
+resetコマンドかな
