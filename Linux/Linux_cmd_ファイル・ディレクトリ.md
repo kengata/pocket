@@ -1,10 +1,15 @@
+
+---
 # tar
 アーカイブ作成
 
+---
 # md5sum
 md5ハッシュの出力
 
 brew install md5sha1sum が失敗
+
+---
 # which
 コマンドのフルパス表示
 
@@ -13,6 +18,8 @@ which コマンド名
 which ls
 
 which git
+
+---
 # xargs
 入力を引数にしてコマンドを実行する
 
