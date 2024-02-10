@@ -75,5 +75,21 @@ ef396d4 ok
 |\ \
 
 ```
+mainブランチからtopicブランチを作成
+この時点でmainブランチの内容はtopicと同期しているので
+グラフは分岐しない。topicを複数回更新しても変わらず
+
+HEADがこのリポジトリの先頭
+mainブランチがtopicに置いてかれているのがわかる
+```
+MACBOOK:pocket Ken$ git log --oneline --graph
+* 525501b (HEAD -> topic) commit at topic branch,update コミットの取り消し
+* c1db432 topicブランチで更新
+* b94d641 (main) ok
+* a0fbea1 Revert "取り消したいコミット"
+* f1120b0 取り消したいコミット
+```
+
+ここでmainブランチのほうを更新してみる
 
 
