@@ -9,4 +9,4 @@ githubのほうでリモートリポジトリを作る
 git remote add origin git@github.com:kengata/作成したリポジトリ
 
 紐づけたリモートリポジトリにpushする
-git push -u origin master
+git push -u origin ローカルのブランチ名
