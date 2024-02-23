@@ -1,3 +1,23 @@
+# awk
+テキストのパターンの検知、処理
+
+/etc/passwdから:を区切り文字として5番目の項目がSystemの行を
+表示する
+awk -F":" '$5 = "Unprivileged" { print NR, $0 }' /etc/passwd
+
+books.mdファイルのls -lコマンド結果を受け取り、5番目の
+項目を表示する。空白がデフォルトの区切り文字っぽい
+ls -l books.md | awk '{print $5}'
+
+```
+MACBOOK:pocket Ken$ ls -l books.md | awk '{print $5}'
+832
+MACBOOK:pocket Ken$ ls -l books.md
+-rw-r--r--  1 Ken  staff  832  2 17 22:51 books.md
+```
+
+
+---
 # grep
 文字列検索
 
