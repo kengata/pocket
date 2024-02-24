@@ -1,3 +1,71 @@
+
+# head
+ファイルの先頭から数行を表示する
+
+head books.md
+
+head -n 
+
+
+
+---
+# diff
+ファイル比較
+
+diff -c books.md books_cpy.md
+copied context形式で出力
+
+```   
+ ---
+ カラマーゾフの兄弟  
+MACBOOK:pocket Ken$ diff -c books.md books_cpy.md
+*** books.md	2024-02-17 22:51:49.000000000 +0900
+--- books_cpy.md	2024-02-23 12:06:48.000000000 +0900
+***************
+*** 6,12 ****
+  藤沢周平の小説
+  - 橋ものがたり
+  - たそがれ清兵衛
+! - 蝉時雨
+    
+  ---
+  カラマーゾフの兄弟  
+--- 6,12 ----
+  藤沢周平の小説
+  - 橋ものがたり
+  - たそがれ清兵衛
+! - 蟹時雨
+    
+  ---
+
+```
+
+diff -C 10 books.md books_cpy.md
+相違箇所10行の指定。Cは大文字
+
+-c : copied context形式
+-u : unified context形式
+-y : side-by-side形式
+
+diff -y books.md books_cpy.md
+side-by-side形式
+
+diff -u books.md books_cpy.md
+unified context形式。これが見やすい
+
+```
+MACBOOK:pocket Ken$ diff -u books.md books_cpy.md
+--- books.md	2024-02-17 22:51:49.000000000 +0900
++++ books_cpy.md	2024-02-23 12:06:48.000000000 +0900
+@@ -6,7 +6,7 @@
+ 藤沢周平の小説
+ - 橋ものがたり
+ - たそがれ清兵衛
+-- 蝉時雨
++- 蟹時雨
+```
+
+---
 # awk
 テキストのパターンの検知、処理
 
