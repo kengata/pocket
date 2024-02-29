@@ -2,6 +2,8 @@
 # shutdown
 システムを終了する
 
+今すぐ再起動
+sudo shutdown -r now
 # halt
 システム停止／再起動
 
