@@ -1,8 +1,14 @@
 # tail
 ファイルの末尾から数行を表示する
 
+tail /var/log/system.log
+systemlogを後ろ10行表示する
 
+tail -n 20 /var/log/system.log
+後ろ20行
 
+tail -f /var/log/system.log
+自動更新
 # head
 ファイルの先頭から数行を表示する
 
