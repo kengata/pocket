@@ -1,4 +1,25 @@
 
+
+
+# hostname
+自分のホスト名（マシン名）を表示する
+# sudo
+別のユーザーとしてコマンドを実行する
+ユーザー指定しない場合はroot
+
+パスワードは15分間有効
+# su
+別ユーザーになる
+
+ユーザー名を指定しない場合はrootになる
+
+su
+rootユーザーに切り替え
+
+su ken
+いつものユーザーに切り替え
+
+exitでsuしたユーザーを外すことができる
 # shutdown
 システムを終了する
 
@@ -13,10 +34,6 @@ sudo shutdown -r now
 MACBOOK:pocket Ken$ hostname
 MACBOOK.local
 ```
-# sudo
-別のユーザーとしてコマンドを実行する
-# su
-別のユーザーになる
 # arch
 マシンのアーキテクチャを表示する
 
