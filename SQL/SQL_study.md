@@ -1,7 +1,7 @@
-#  mysqlログイン
+mysql 
+#  ログイン
 
 mysql -u root -p
-
 pw
 root
 
