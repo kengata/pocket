@@ -594,6 +594,24 @@ MACBOOK:pocket Ken$ git branch -d origin/feature
 error: branch 'origin/feature' not found.
 ```
 
+リモートのほうでブランチを消したあと、リモート追跡ブランチを消す方法
+git remote prune origin
+or
+git fetch -p      感覚的にはこれがいい　フェッチしてきて同期される感じ
+or
+git fetch --prune
+
+```
+MACBOOK:pocket Ken$ git branch -a
+* main
+  remotes/origin/main
+  remotes/origin/topic
+MACBOOK:pocket Ken$ git fetch -p
+From github.com:kengata/pocket
+ - [deleted]         (none)     -> origin/topic
+```
+
+
 リモートリポジトリを削除するにはpushで削除する
 ```
 MACBOOK:pocket Ken$ git push --delete origin feature
