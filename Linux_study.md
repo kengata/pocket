@@ -1,3 +1,202 @@
+
+### grep
+
+オプション
+-r：カレントディレクトリの配下のディレクトリを含めて検索する
+-E：正規表現を使用する
+
+#### fan、pat、milesを含むファイルを検索する
+```
+MACBOOK:player Ken$ grep -r -E "(fan|pat|miles)" .
+./guitar:pat metheny
+./bass:john pattituti
+./All_Musicians:fanfan
+./All_Musicians:pat metheny
+./All_Musicians:john pattituti
+./horn:fanfan
+./horn:miles davis
+```
+#### jから始まって、iで終わる行の検索
+
+```
+grep -r -E "^j.*$i" .
+```
+grep
+正規表現
+^ : 行頭
+$ : 行末
+. : 任意の1文字
+\*: 直前の表現が0回以上
+
+コマンドオプション
+-r : 再帰検索
+-E : 正規表現
+最後の. : 検索起点のパス
+
+```
+MACBOOK:player Ken$ grep -r -E "^j.*$i" .
+./bass:john pattituti
+./All_Musicians:john pattituti
+```
+
+#### grep結果をファイルに出力する（リダイレクト）
+
+\> : リダイレクト
+
+grep -r -E "john" . > grep_john
+
+```
+MACBOOK:music Ken$ grep -r -E "john" ./player > grep_john.txt
+MACBOOK:music Ken$ cat grep_john.txt
+./player/bass:john pattituti
+./player/horn:john coltrane
+MACBOOK:music Ken$
+```
+
+#### grep結果をcatなどで表示する（パイプ）
+
+catにパイプ
+```
+MACBOOK:music Ken$ grep -r -E "john" ./player | cat
+./player/bass:john pattituti
+./player/horn:john coltrane
+```
+
+#### find結果をgrepする
+
+xargsをかまさないと動かない
+```
+MACBOOK:pocket Ken$ find . -name '*.md' | xargs grep -E 'commit'
+./Linux/Linux_テキスト処理.md:grep --color -r commit *
+./Linux/Linux_テキスト処理.md:commit とうい文字列を含む行を検索
+./Linux/Linux_テキスト処理.md:MACBOOK:pocket Ken$ grep --color -r commit *
+./Linux/Linux_テキスト処理.md:git/git ローカルブランチの作成からリモートへのプッシュまで.md:ローカルで更新、add、commit
+
+```
+findからxargsを経由せずにgrepする方法
+```
+MACBOOK:pocket Ken$ find ./music -type f -exec grep -E 'john.*' {} +
+./music/grep_john.txt:./player/bass:john pattituti
+./music/grep_john.txt:./player/horn:john coltrane
+./music/All_Musicians:john pattituti
+./music/player/bass:john pattituti
+./music/player/horn:john coltrane
+MACBOOK:pocket Ken$ 
+```
+#### xargs
+重要コマンド！
+
+前のコマンドの結果を受けっとって、次のコマンドの引数に引き渡す
+
+対処ファイルのgrep
+find から grep。grepの前にxargsをはさむ
+
+findコマンドについて
+https://qiita.com/ko1nksm/items/7fec71f78a394a80ed2b
+```
+MACBOOK:music Ken$ find ./player -type f
+./player/piano
+./player/drums
+./player/guitar
+./player/bass
+./player/horn
+```
+```
+MACBOOK:music Ken$ find ./player -type f | cat
+./player/piano
+./player/drums
+./player/guitar
+./player/bass
+./player/horn
+```
+
+```
+MACBOOK:music Ken$ find ./player -type f | xargs cat
+bil evans
+bud powell
+art brakey
+elvin jones
+wes mongomery
+pat metheny
+john pattituti
+anthony jackson
+hino terumasa
+fanfan
+miles davis
+lee morgan
+john coltrane
+```
+
+
+#### treeでファイル確認
+
+```
+MACBOOK:music Ken$ pwd
+/Users/Ken/Library/Mobile Documents/iCloud~md~obsidian/Documents/pocket/music
+MACBOOK:music Ken$ tree
+.
+└── player
+    ├── All_Musicians
+    ├── bass
+    ├── drums
+    ├── guitar
+    ├── horn
+    └── piano
+
+2 directories, 6 files
+```
+
+musicフォルダ -> player -> 楽器別のファイル
+
+ファイルの一覧
+```
+MACBOOK:player Ken$ ls -l
+total 48
+-rw-r--r--  1 Ken  staff  146  4  5 22:01 All_Musicians
+-rw-r--r--  1 Ken  staff   31  4  5 22:01 bass
+-rw-r--r--  1 Ken  staff   23  4  5 22:01 drums
+-rw-r--r--  1 Ken  staff   26  4  5 22:01 guitar
+-rw-r--r--  1 Ken  staff   44  5  6 14:03 horn
+-rw-r--r--  1 Ken  staff   21  4  5 22:01 piano
+```
+
+各ファイルの内容
+All_Musicians
+```
+MACBOOK:player Ken$ cat All_Musicians
+hino terumasa
+fanfan
+meiles davis
+lee morgan
+wes mongomery
+pat metheny
+bil evans
+bud powell
+john pattituti
+anthony jackson
+art brakey
+elvin jones
+```
+
+guitar
+```
+MACBOOK:player Ken$ cat guitar
+wes mongomery
+pat metheny
+```
+horn
+```
+MACBOOK:player Ken$ cat horn
+hino terumasa
+fanfan
+miles davis
+lee morgan
+MACBOOK:player Ken$ 
+```
+
+
+
+---
 ### 練習シナリオ2 ファイル操作
 - ディレクトリ作成
 - ファイルをマージして新しいディレクトリに出力

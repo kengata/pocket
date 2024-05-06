@@ -171,8 +171,51 @@ mysql> show tables;
 +-----------------+
 4 rows in set (0.00 sec)
 ```
-stock表にレコード追加してからv_stockをselect
-cullent_date関数を利用して海まで行ったとか
+
+どれがview表か分からないので以下で
+INFORMATION_SCHEMAデータベースのVIEWS表に情報がある。
+show databasesで、スキーマ（＝データベース）を確認できる。
+studyスキーマのviewが表示される。
+
+```
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| study              |
+| sys                |
+| test               |
++--------------------+
+6 rows in set (0.00 sec)
+```
+
+INFORMATION_SCHEMAデータベースのVIEWS表を表示。\Gは表示形式のオプション。
+```
+mysql> select * from INFORMATION_SCHEMA.VIEWS where TABLE_SCHEMA='study'\G;
+*************************** 1. row ***************************
+       TABLE_CATALOG: def
+        TABLE_SCHEMA: study
+          TABLE_NAME: v_stock
+     VIEW_DEFINITION: select `t1`.`user_id` AS `user_id`,`t3`.`name` AS `name`,`t1`.`meigara_cd` AS `meigara_cd`,`t2`.`meigara_name` AS `meigara_name`,`t1`.`zandaka` AS `zandaka`,`t1`.`ukewatashi_date` AS `ukewatashi_date` from `study`.`stock` `t1` join `study`.`meigara_m` `t2` join `study`.`user` `t3` where ((`t1`.`meigara_cd` = `t2`.`meigara_cd`) and (`t1`.`user_id` = `t3`.`user_id`))
+        CHECK_OPTION: NONE
+        IS_UPDATABLE: YES
+             DEFINER: root@localhost
+       SECURITY_TYPE: DEFINER
+CHARACTER_SET_CLIENT: utf8
+COLLATION_CONNECTION: utf8_general_ci
+1 row in set (0.00 sec)
+
+ERROR: 
+No query specified
+```
+
+いろいろ試してみる。
+
+- stock表にレコード追加してからv_stockをselect
+- cullent_date関数を利用
 ```
 mysql> select * from stock;
 +---------+------------+---------+-----------------+
@@ -214,6 +257,59 @@ mysql> select * from v_stock where user_id = 1;
 2 rows in set (0.01 sec)
 ```
 
+stockにuserテーブルにないuser_idのレコードを追加する。
+viewはuserテーブルと内部結合しているのでuserテーブルにないレコードは抽出されない。
+
+user_id=6のレコードを追加
+```
+mysql> insert into stock values(6,9001,400,current_date);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from stock;
++---------+------------+---------+-----------------+
+| user_id | meigara_cd | zandaka | ukewatashi_date |
++---------+------------+---------+-----------------+
+|       1 |       2000 |     200 | 2024-04-25      |
+|       1 |       9001 |    1000 | 2024-04-19      |
+|       2 |       9100 |     500 | 2024-04-19      |
+|       3 |       8400 |     600 | 2024-04-19      |
+|       4 |       2000 |   10000 | 2024-04-19      |
+|       5 |       2000 |    2000 | 2024-04-19      |
+|       6 |       9001 |     400 | 2024-04-27      |
++---------+------------+---------+-----------------+
+7 rows in set (0.00 sec)
+```
+
+userテーブル
+```
+mysql> select * from user;
++---------+-----------------+---------------+
+| user_id | name            | contract_date |
++---------+-----------------+---------------+
+|       1 | ケンシロウ      | 2024-04-21    |
+|       2 | ラオウ          | 2024-04-20    |
+|       3 | トキ            | 2024-04-19    |
+|       4 | ジャギ          | 2024-04-18    |
+|       5 | レイ            | 2024-04-21    |
++---------+-----------------+---------------+
+```
+viewの表示。userにuser_idが存在しないレコードは抽出されない。user_id=6が未選択。
+```
+mysql> select * from v_stock;
++---------+-----------------+------------+--------------+---------+-----------------+
+| user_id | name            | meigara_cd | meigara_name | zandaka | ukewatashi_date |
++---------+-----------------+------------+--------------+---------+-----------------+
+|       1 | ケンシロウ      |       2000 | 住友電工     |     200 | 2024-04-25      |
+|       1 | ケンシロウ      |       9001 | 京成電鉄     |    1000 | 2024-04-19      |
+|       2 | ラオウ          |       9100 | 東武電鉄     |     500 | 2024-04-19      |
+|       3 | トキ            |       8400 | 任天堂       |     600 | 2024-04-19      |
+|       4 | ジャギ          |       2000 | 住友電工     |   10000 | 2024-04-19      |
+|       5 | レイ            |       2000 | 住友電工     |    2000 | 2024-04-19      |
++---------+-----------------+------------+--------------+---------+-----------------+
+
+```
+
+viewをstockテーブルを軸にした外部結合に変更する
 
 
 ---
