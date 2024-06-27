@@ -5,6 +5,41 @@ MACBOOK:pocket Ken$ mysql --version
 mysql  Ver 14.14 Distrib 5.7.10, for osx10.9 (x86_64) using  EditLine wrapper
 ```
 
+
+
+
+
+# 外部結合
+
+stockのレコードをmeigara_mとuserテーブルと結合できない場合でも
+表示するviewを追加
+```
+mysql> create view v_stock_JOIN as
+    -> select t1.user_id,t3.name,t1.meigara_cd,t2.meigara_name,t1.zandaka,t1.ukewatashi_date,t2.torihiki_teishi
+    -> from stock t1
+    -> left join meigara_m t2 on t1.meigara_cd = t2.meigara_cd
+    -> left join user t3 on t1.user_id = t3.user_id;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_study |
++-----------------+
+| meigara_m       |
+| stock           |
+| user            |
+| v_stock         |
+| v_stock_join    |
++-----------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+```
+
+
+
+
+
 ---
 # シナリオ
 以下のデータを管理するテーブルを作成し、データを登録する
