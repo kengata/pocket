@@ -1,12 +1,17 @@
 = asciidocの書き方
 
-参考
+こちらを参考に +
 https://qiita.com/xmeta/items/de667a8b8a0f982e123a[Qiita]
 
-リンクはURL[リンク名]で書く
 
-== 見出しの書き方
-= Document Title (Level 0)
+= タイトル
+== レベル１
+=== レベル２
+==== レベル３
+
+
+
+= 文書のタイトル (Level 0)
 == Level 1 Section Title
 === Level 2 Section Title
 ==== Level 3 Section Title
@@ -52,3 +57,7 @@ public class OutputServlet extends HttpServlet {
 			throws ServletException, IOException {
 		Connection con = null;
 ----
+
+
+image::first.drawio.svg[align="center"]
+
