@@ -1,4 +1,9 @@
 
+[Qiita 初心者向け！基本的なLinuxコマンドと使い方！](https://qiita.com/nokonoko_1203/items/35c4078bf72cffb16171)
+### find
+
+
+
 ### grep
 
 オプション
